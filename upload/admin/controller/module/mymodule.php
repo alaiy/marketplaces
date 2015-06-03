@@ -85,7 +85,7 @@ class ControllerModuleMymodule extends Controller {
 			'common/header',
 			'common/footer'
 		);
-
+                
 		$this->response->setOutput($this->render());
 	}
 
@@ -102,9 +102,10 @@ class ControllerModuleMymodule extends Controller {
 	}
         public function edit()
         {
-           // var_dump($_GET['platform']);die;
-                $this->language->load('module/mymodule');
 
+                $this->language->load('module/mymodule');
+                $this->load->model('catalog/category');
+                $this->load->model('catalog/product');
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
@@ -168,13 +169,15 @@ class ControllerModuleMymodule extends Controller {
 		);
 	
 		$this->data['modules'] = array();
-
+                
 		if (isset($this->request->post['mymodule_module'])) {
 			$this->data['modules'] = $this->request->post['mymodule_module'];
 		} elseif ($this->config->get('mymodule_module')) { 
 			$this->data['modules'] = $this->config->get('mymodule_module');
 		}	
-
+                $this->data['category_list'] = $this->model_catalog_category->getCategories();
+                $this->data['show_products'] = $this->url->link('module/mymodule/getProductsForExport', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['token'] = $this->session->data['token'];
 		$this->load->model('design/layout');
 
 		$this->data['layouts'] = $this->model_design_layout->getLayouts();
@@ -186,6 +189,79 @@ class ControllerModuleMymodule extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
+        }
+        public function getProductsForExport()
+        {
+            $this->load->model('catalog/product');
+            $categorysIdString = $_POST['categors_id'];
+            $categorysId = explode(",", $categorysIdString);
+            
+            $html = "";
+            $productsId = array();
+            foreach ($categorysId as $oneCategorId)
+            { 
+                $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE  category_id = '" . $oneCategorId . "'");
+		if ($query->num_rows) {
+                    foreach ($query->rows as $oneRow)
+                    {
+                        $productsId [] = $oneRow['product_id'];
+                    }
+                }	
+            }
+            $uniqueProductsId = array_unique($productsId);
+            $html.= "<table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>Фото</td>
+                                <td>Название</td>
+                            </tr>
+                        </thead>
+                    <tbody>";
+            $i = -1;
+            foreach ($uniqueProductsId as $oneUniqueProductId)
+            {
+                $i ++;
+                $products = $this->model_catalog_product->getProduct((int)$oneUniqueProductId);
+                $html.= "<tr><td><input class='product-check' type='checkbox' id='product_".$i ."' value=".$products['product_id']."></td><td><img src='http://localhost/opencart/upload/image/".$products['image']."' width='100' height='100'></td><td>".$products['name']."</td></tr>";
+                
+            }
+            
+            $html.= "</tbody></table>";
+           
+            echo $html;            
+        }
+        public function getExport()
+        {
+            
+            $this->load->model('catalog/product');
+            $productsIdString = $_POST['categors_id'];
+            $productsId = explode(",", $productsIdString);
+            
+            $html = "";
+
+            $uniqueProductsId = array_unique($productsId);
+            $html.= "<table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>Фото</td>
+                                <td>Название</td>
+                            </tr>
+                        </thead>
+                    <tbody>";
+            $i = -1;
+            foreach ($uniqueProductsId as $oneUniqueProductId)
+            {
+                $i ++;
+                $products = $this->model_catalog_product->getProduct((int)$oneUniqueProductId);
+                $html.= "<tr><td><input class='export-check' type='checkbox' id='export_".$i ."' value=".$products['product_id']."></td><td><img src='http://localhost/opencart/upload/image/".$products['image']."' width='100' height='100'></td><td>".$products['name']."</td></tr>";
+                
+            }
+            
+            $html.= "</tbody></table>";
+
+            echo $html;            
         }
 }
 ?>

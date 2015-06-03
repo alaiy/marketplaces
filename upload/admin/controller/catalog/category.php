@@ -10,6 +10,7 @@ class ControllerCatalogCategory extends Controller {
 		$this->load->model('catalog/category');
 
 		$this->getList();
+                
 	}
 
 	public function insert() {
@@ -197,7 +198,7 @@ class ControllerCatalogCategory extends Controller {
 		$pagination->url = $this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
-
+                
 		$this->template = 'catalog/category_list.tpl';
 		$this->children = array(
 			'common/header',

@@ -44,5 +44,5 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+
 <?php echo $footer; ?>

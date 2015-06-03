@@ -14,55 +14,22 @@
             <div class="div-left">
                 <p>Шаг 1:  Выберите категориии товаров для экспорта.</p>
                 <p>Окно № 1 : Выбор категорий для экспорта</p>
-                <button>Выделить все</button> / <button>Снять все</button> <br><br>
-                <form method="post" action="#">
-                    <span>всего выделено 5 категорий </span><input type="submit" value="Добавить в экспорт">
-                    <div class="categor">
-                            <p><input type="checkbox" name="option1" value="a1" checked>Windows 95/98<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-
-                            <input type="checkbox" name="option5" value="a5">X3-DOS</p>
-
-                    </div>
-                </form>
+                <button onclick="displayAll('.category-check')">Выделить все</button> / <button onclick="skipAll('.category-check')">Снять все</button> <br><br>    
+                <span>всего выделено 5 категорий </span><button onclick="showProducts()">Добавить в экспорт</button> 
+                <div class="categor">
+                    <p>
+                        <?php 
+                        $i = -1;
+                        foreach($category_list as $one_categor)
+                        {
+                            $i++;
+                            ?>
+                            <input class="category-check" type="checkbox" id=<?php echo "category_".$i; ?> value=<?php echo $one_categor['category_id']; ?>><?php echo $one_categor['name']; ?><Br>
+                            <?
+                        }
+                        ?>
+                    </p>
+                </div>
 
             </div>
             <div class="div-right-one">
@@ -97,108 +64,20 @@
             <div class="div-left">
                 <p>Шаг 2:  Выберите товары для экспорта.</p>
                 <p>Окно № 2 : Выбор товаров для экспорта</p>
-                <button>Выделить все</button> / <button>Снять все</button> <br><br>
-                <form method="post" action="#">
-                    <span>всего выделено 5 категорий </span><input type="submit" value="Добавить в экспорт">
-                    <div class="categor">
-                            <p><input type="checkbox" name="option1" value="a1" checked>Windows 95/98<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-
-                            <input type="checkbox" name="option5" value="a5">X3-DOS</p>
-
-                    </div>
-                </form>
+                <button onclick="displayAll('.product-check')">Выделить все</button> / <button onclick="skipAll('.product-check')">Снять все</button> <br><br>                
+                    <span>всего выделено 5 категорий </span><button onclick="showExport()">Добавить в экспорт</button> 
+                    <div class="product_show">
+                        
+                    </div>               
             </div>
             <div class="div-right">
                 <p>Шаг 3: Проверьте список  товаров и категорий для экспорта.</p>
                 <p>Окно № 3 : Выбранные товары и категории для экспорта</p>
-                <button>Выделить все</button> / <button>Снять все</button> <br><br>
-                <form method="post" action="#">
-                    <span>всего выделено 5 категорий </span><input type="submit" value="Добавить в экспорт">
-                    <div class="categor">
-                            <p><input type="checkbox" name="option1" value="a1" checked>Windows 95/98<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-                            <input type="checkbox" name="option2" value="a2">Windows 2000<Br>
-                            <input type="checkbox" name="option3" value="a3">System X<Br> 
-                            <input type="checkbox" name="option4" value="a4">Linux<Br>
-
-                            <input type="checkbox" name="option5" value="a5">X3-DOS</p>
-
+                <button onclick="displayAll('.export-check')">Выделить все</button> / <button onclick="skipAll('.export-check')">Снять все</button> <br><br>
+                    <span>всего выделено 5 категорий </span><button onclick="">Добавить в экспорт</button> 
+                    <div class="export_show">
+                        
                     </div>
-                </form>
             </div>
         </div>
         <div class="clear"></div>
@@ -209,5 +88,63 @@
    
   </div>
 </div>
+<script type="text/javascript">
+function showProducts() {
 
+    var count_catagors = $("input.category-check").length;
+    var i = 0;
+    var categors_id = [];
+
+    for(i; i<count_catagors; i++)
+    {
+       if(document.getElementById('category_'+i).checked) {
+           categors_id.push(document.getElementById('category_'+i).value);
+       }
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'index.php?route=module/mymodule/getProductsForExport&token=<?php echo $token;?>',
+        data: 'categors_id=' +  categors_id,
+        success: function(data){
+            
+            $('.product_show').html(data);
+        }
+    });
+}
+function showExport() {
+
+    var count_products = $("input.product-check").length;
+    var i = 0;
+    var products_id = [];
+
+
+    for(i; i<count_products; i++)
+    {
+       if(document.getElementById('product_'+i).checked) {
+
+           products_id.push(document.getElementById('product_'+i).value);
+       }
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: 'index.php?route=module/mymodule/getExport&token=<?php echo $token;?>',
+        data: 'categors_id=' +  products_id,
+        success: function(data){
+            
+            $('.export_show').append(data);
+        }
+    });
+}
+function skipAll(calss_name) {
+    $(calss_name).each(function() { 
+        this.checked = false;                     
+    });         
+}
+function displayAll(calss_name) {
+    $(calss_name).each(function() { 
+        this.checked = true;              
+    });
+}
+</script>
 <?php echo $footer; ?>

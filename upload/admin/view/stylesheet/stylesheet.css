@@ -560,7 +560,7 @@ table.form > tbody > tr > td {
 }
 .categor {
     height: 300px;
-    width: 300px;
+    width: 500px;
     overflow: scroll;
     border: 1px solid grey;
     margin-top: 10px;
@@ -595,4 +595,14 @@ table.form > tbody > tr > td {
 }
 .div-right-one {
     margin-left:72%;
+}
+.my-content p {
+    margin: 0px;
+}
+.product_show, .export_show {
+     height: 300px;
+    width: 500px;
+    overflow: scroll;
+    border: 1px solid grey;
+    margin-top: 10px;
 }
