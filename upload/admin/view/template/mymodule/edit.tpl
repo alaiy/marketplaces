@@ -74,7 +74,7 @@
                 <p>Шаг 3: Проверьте список  товаров и категорий для экспорта.</p>
                 <p>Окно № 3 : Выбранные товары и категории для экспорта</p>
                 <button onclick="displayAll('.export-check')">Выделить все</button> / <button onclick="skipAll('.export-check')">Снять все</button> <br><br>
-                    <span>всего выделено 5 категорий </span><button onclick="">Добавить в экспорт</button> 
+                    <span>всего выделено 5 категорий </span><button onclick="">Удалить</button> 
                     <div class="export_show">
                         
                     </div>
@@ -101,31 +101,68 @@ function showProducts() {
            categors_id.push(document.getElementById('category_'+i).value);
        }
     }
+    var count_exported_products = $("input.export-check").length;
+    i = 0;
+    var exported_products_id = [];
+    
+    for(i; i<count_exported_products; i++)
+    {
+        exported_products_id.push(document.getElementById('export_'+i).value);
+    }
+    
     $.ajax({
         type: 'POST',
         url: 'index.php?route=module/mymodule/getProductsForExport&token=<?php echo $token;?>',
-        data: 'categors_id=' +  categors_id,
+        data: 'categors_id=' + categors_id +'&exported_products_id=' + exported_products_id,
         success: function(data){
-            
             $('.product_show').html(data);
         }
     });
 }
+function updateProduct() {
+    var update_count_products = $("input.product-check").length;
+    var update_i = 0;
+    var update_pruducts_id = [];
+
+    for(update_i; update_i<update_count_products; update_i++)
+    {
+        update_pruducts_id.push(document.getElementById('product_'+update_i).value);
+    }
+    var update_count_exported_products = $("input.export-check").length;
+    update_i = 0;
+    var update_exported_products_id = [];
+    
+    for(update_i; update_i<update_count_exported_products; update_i++)
+    {
+       
+        update_exported_products_id.push(document.getElementById('export_'+update_i).value);
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'index.php?route=module/mymodule/updateProductsForExport&token=<?php echo $token;?>',
+        data: 'products_id=' + update_pruducts_id +'&exported_products_id=' + update_exported_products_id,
+        success: function(data){
+            $('.product_show').html(data);
+        }
+    });
+    
+}
+
+function removeElement(element) {
+    element && element.parentNode && element.parentNode.removeChild(element);
+}
+
 function showExport() {
 
     var count_products = $("input.product-check").length;
     var i = 0;
     var products_id = [];
-
-
     for(i; i<count_products; i++)
     {
-       if(document.getElementById('product_'+i).checked) {
-
+       if(document.getElementById('product_'+i).checked) {          
            products_id.push(document.getElementById('product_'+i).value);
        }
     }
-
     $.ajax({
         type: 'POST',
         url: 'index.php?route=module/mymodule/getExport&token=<?php echo $token;?>',
@@ -133,9 +170,11 @@ function showExport() {
         success: function(data){
             
             $('.export_show').append(data);
+            updateProduct();
         }
     });
 }
+
 function skipAll(calss_name) {
     $(calss_name).each(function() { 
         this.checked = false;                     
