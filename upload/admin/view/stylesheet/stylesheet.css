@@ -560,14 +560,16 @@ table.form > tbody > tr > td {
 }
 .categor {
     height: 300px;
-    width: 500px;
+    width: 350px;
     overflow: scroll;
     border: 1px solid grey;
-    margin-top: 10px;
+    margin: 10px 0;
     
 }
 .param-export {
     text-align: left;
+    border: 1px solid grey;
+    padding: 3px;
     
 }
 .param-export p {
@@ -579,30 +581,87 @@ table.form > tbody > tr > td {
     font-size: 14px;
 }
 .clear {
+    border: 0px solid gray;
+    padding: 5px;
     clear: both;
     margin: 10px 0;
 }
 .down-button {
     text-align: center;
-    margin: 10px auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .div-left {
     width:48%;
     float:left;
 }
 .div-right {
-    margin-left:52%;
+
+    margin-left:62%;
 }
 .div-right-one {
-    margin-left:72%;
+    margin-left:62%;
+    width: 370px;
 }
 .my-content p {
     margin: 0px;
 }
-.product_show, .export_show {
-     height: 300px;
+.product, .export {
+    height: 300px;
     width: 500px;
     overflow: scroll;
     border: 1px solid grey;
     margin-top: 10px;
+    overflow: scroll;
+}
+.product {
+    
+    width:80%;
+    float:left;
+}
+.red-msg {
+    color: red;
+    width: 350px;
+}
+.green-msg {
+    color: green;
+    width: 350px;
+}
+.red-span {
+    color: red;
+    font-weight: bold;
+}
+.even-p {
+    background-color: lightblue;
+}
+.bot {
+    width: 500px;
+}
+.div-button-centre {
+    margin-left:102%;
+    margin-top:25%;
+}
+.table-products {
+    border: 1px solid gray;
+    width: 100%;
+}
+.table-products td {
+    border: 1px solid gray;
+}
+.img-product {
+    width: 50px;
+    height: 50px;
+}
+.img-td, .check-td {
+    text-align: center;
+}
+.product-check input {
+    width: 50px;
+}
+.tr-product td{
+    text-align: center;
+    border: 1px solid gray;
+}
+.table-exports {
+    width: 100%;
 }
